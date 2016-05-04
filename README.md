@@ -61,7 +61,7 @@ file/files: ['myfile.py']
 tools/searches: ['primate', 'wolf']
 ```
 
-And the content of the .ini file is this:
+Now the content .ini file is:
 
 ```text
 [file]
@@ -73,10 +73,17 @@ owner = {'surname': 'miro', 'name': 'joan'}
 searches = ['primate', 'wolf']
 ```
 
-## :yum: How to contribute
+:yum: How to contribute
+-----------------------
 
-Have an idea? Found a bug? [add a new issue](https://github.com/dmiro/iniconfig/issues) or [fork the project] (https://github.com/dmiro/iniconfig#fork-destination-box) and pull a request.
+Have an idea? Found a bug? [add a new issue](https://github.com/dmiro/iniconfig/issues) or [fork] (https://github.com/dmiro/iniconfig#fork-destination-box) and sendme a pull request. Don't forget to add your name to the Contributors section of this document.
 
-## :scroll: license
+:scroll: license
+----------------
 
-MIT
+Licensed under the MIT, see `LICENSE`
+
+:heart_eyes: Contributors
+--------------------------
+
+David Miro <lite.3engine@gmail.com>
