@@ -4,18 +4,21 @@ A more convenient and practical approach to manage .ini files. You can link a cl
 Example
 -------
 
-```
+```python
 from iniconfig import IniConfig
 
-class Config(IniConfig):   
+class Config(IniConfig):
+
     # file section
     useCsvWizard = IniConfig.iniproperty('file', 'useCsvWizard', True)
     owner = IniConfig.iniproperty('file', 'owner', {'name':'david', 'login':'yeap'})
     files = IniConfig.iniproperty('file', 'files', [])
+
     # tools section
     searches = IniConfig.iniproperty('tools', 'searches', ['primate', 'wolf', 'rabbit'])
     matchMode = IniConfig.iniproperty('tools', 'matchMode', 0)
     weight = IniConfig.iniproperty('tools', 'weight', False)
+
     # config section
     restore = IniConfig.iniproperty('config', 'restore', True)
 
@@ -44,7 +47,7 @@ print 'tools/searches:', config.searches
 
 Result
 
-```
+```bash
 after
 file/useCsvWizard: True
 file/owner: {'login': 'yeap', 'name': 'david'}
@@ -60,7 +63,7 @@ tools/searches: ['primate', 'wolf']
 
 And the content of the .ini file is this:
 
-```
+```text
 [file]
 usecsvwizard = False
 files = ['myfile.py']
