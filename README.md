@@ -1,6 +1,18 @@
 # iniconfig
 A more convenient and practical approach to manage .ini files. You can link a class property with an .ini file option and delegating your management.
 
+:package: Installation
+-----------------------
+
+Install it via `pip`
+
+soon....
+
+Or download zip and then install it by running
+
+`$ [sudo] python setup.py install`
+
+
 Example
 -------
 
@@ -78,7 +90,7 @@ searches = ['primate', 'wolf']
 
 Have an idea? Found a bug? [add a new issue](https://github.com/dmiro/iniconfig/issues) or [fork] (https://github.com/dmiro/iniconfig#fork-destination-box) and sendme a pull request. Don't forget to add your name to the Contributors section of this document.
 
-:scroll: license
+:scroll: License
 ----------------
 
 Licensed under the MIT, see `LICENSE`

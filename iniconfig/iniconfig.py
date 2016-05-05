@@ -2,17 +2,14 @@
 
 """
 iniconfig
-=========
+---------
 
-IniConfig is ...
+A more convenient and practical approach to manage .ini files.
+You can link a class property with an .ini file option and
+delegating your management.
 
-See https://github.com/dmiro/iniconfig/ for more information:
-
+See https://github.com/dmiro/iniconfig for more information
 """
-
-__author__ = 'dmiro'
-__version_info__ = (1, 0, 0)
-__version__ = '.'.join(str(v) for v in __version_info__)
 
 from ConfigParser import ConfigParser
 from ast import literal_eval
