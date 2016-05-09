@@ -5,4 +5,4 @@ before_install:
 install:
   - pip install mock==2.0.0
 script:
-  - python setup.py tests
+  - python setup.py test
