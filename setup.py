@@ -13,16 +13,17 @@ except:
   pass
 
 setup(
-    name='iniconfig',
-    version=__import__('iniconfig').__version__,
+    name = 'iniconfig',
+    version = __import__('iniconfig').__version__,
     author = 'David Miro',
     author_email = 'lite.3engine@gmail.com',
     description = 'A more convenient and practical approach to manage .ini files',
-    long_description=long_description,
-    license=open('LICENSE').read(),
-    url='https://github.com/dmiro/iniconfig',
-    packages=find_packages(),
-    classifiers=[
+    long_description = long_description,
+    license = open('LICENSE').read(),
+    url = 'https://github.com/dmiro/iniconfig',
+    packages = find_packages(),
+    test_suite = 'tests',
+    classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',

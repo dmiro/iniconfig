@@ -1,0 +1,8 @@
+language: python
+python:
+  - "2.7"
+before_install:
+install:
+  - pip install mock==2.0.0
+script:
+  - python setup.py tests
