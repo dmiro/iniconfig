@@ -92,29 +92,45 @@ class Test(unittest.TestCase):
         mock_file.__exit__ = mock.MagicMock()   # compatibility
         mock_file.readline.side_effect = side_effect
         conf = Conf('conf.ini')
-
-        conf.optInt = 20
-        conf.optList = ['twenty']
-        del(conf.optDict['three'])
-
         self.assertTrue(mock_method.called)
+
+        # test 1
+        conf.optInt = 20
         self.assertEqual(conf.optInt, 20)
         expected = [mock.call('[section]\n'),
                     mock.call('option3 = 20\n'),
                     mock.call("option5 = {'three': '3', 'four': '4'}\n"),
-                    mock.call('\n'),
-                    mock.call('[section]\n'),
+                    mock.call('\n')]
+        self.assertEqual(mock_file.write.call_count, 4)
+        for expect in expected:
+            self.assertIn(expect, mock_file.write.call_args_list)
+        mock_file.write.reset_mock()
+
+        # test 2
+        conf.optList = ['twenty']
+        self.assertEqual(conf.optList, ['twenty'])
+        expected = [mock.call('[section]\n'),
                     mock.call('option3 = 20\n'),
                     mock.call("option5 = {'three': '3', 'four': '4'}\n"),
                     mock.call("option4 = ['twenty']\n"),
-                    mock.call('\n'),
-                    mock.call('[section]\n'),
+                    mock.call('\n')]
+        self.assertEqual(mock_file.write.call_count, 5)
+        for expect in expected:
+            self.assertIn(expect, mock_file.write.call_args_list)
+        mock_file.write.reset_mock()
+
+        # test 3
+        del(conf.optDict['three'])
+        self.assertEqual(conf.optDict,{'four': '4'})
+        expected = [mock.call('[section]\n'),
                     mock.call('option3 = 20\n'),
                     mock.call("option5 = {'four': '4'}\n"),
                     mock.call("option4 = ['twenty']\n"),
                     mock.call('\n')]
-        self.assertEqual(mock_file.write.call_args_list, expected)
-        self.assertEqual(mock_file.write.call_count, 14)
+        self.assertEqual(mock_file.write.call_count, 5)
+        for expect in expected:
+            self.assertIn(expect, mock_file.write.call_args_list)
+
 
 if __name__ == '__main__':
     unittest.main()
