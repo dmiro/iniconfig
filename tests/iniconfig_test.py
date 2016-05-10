@@ -5,13 +5,14 @@ import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+PY_VERSION = sys.version_info
 
-if sys.version_info >= (3,3):
+if PY_VERSION >= (3,3):
     import unittest.mock as mock
 else:
     import mock
 
-if sys.version_info >= (3,0):
+if PY_VERSION >= (3,0):
     from io import TextIOBase as file
     BUILTIN = 'builtins' # http://stackoverflow.com/q/9047745/2270217
 else:
@@ -52,7 +53,10 @@ class Test(unittest.TestCase):
 
         conf = Conf('conf.ini')
 
-        mock_method.assert_called_once_with('conf.ini')
+        if PY_VERSION >= (3,0):
+            mock_method.assert_called_once_with('conf.ini', encoding=None)
+        else:
+            mock_method.assert_called_once_with('conf.ini')
         self.assertFalse(conf.optBool)
         self.assertEqual(conf.optFloat, 40.5)
         self.assertEqual(conf.optInt, 10)
@@ -66,7 +70,6 @@ class Test(unittest.TestCase):
 
         conf = Conf('conf.ini')
 
-        mock_method.assert_called_once_with('conf.ini')
         self.assertFalse(conf.optBool)
         self.assertEqual(conf.optFloat, 40.5)
         self.assertEqual(conf.optInt, 0)
