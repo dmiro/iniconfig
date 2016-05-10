@@ -5,15 +5,19 @@ import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-try:
-    import mock                   # py2
-except ImportError:
-    import unittest.mock as mock  # py3
+
+if sys.version_info >= (3,3):
+    import unittest.mock as mock
+else:
+    import mock
+
 if sys.version_info >= (3,0):
     from io import TextIOBase as file
-    BUILTIN = 'builtins'          # http://stackoverflow.com/q/9047745/2270217
+    BUILTIN = 'builtins' # http://stackoverflow.com/q/9047745/2270217
 else:
+    import mock
     BUILTIN = '__builtin__'
+
 from iniconfig import IniConfig
 import unittest
 
