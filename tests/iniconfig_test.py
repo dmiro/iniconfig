@@ -11,6 +11,9 @@ except ImportError:
     import unittest.mock as mock  # py3
 if sys.version_info >= (3,0):
     from io import TextIOBase as file
+    BUILTIN = 'builtins'          # http://stackoverflow.com/q/9047745/2270217
+else:
+    BUILTIN = '__builtin__'
 from iniconfig import IniConfig
 import unittest
 
@@ -28,7 +31,7 @@ class Test(unittest.TestCase):
     def setUp(self):
        pass
 
-    @mock.patch('__builtin__.open', spec=file)
+    @mock.patch(BUILTIN + '.open', spec=file)
     def test_load_inifile(self, mock_method):
 
         file_metadata = ['[section]',
@@ -52,7 +55,7 @@ class Test(unittest.TestCase):
         self.assertEqual(conf.optList, [])
         self.assertEqual(conf.optDict, {'three': '3', 'four': '4'})
 
-    @mock.patch('__builtin__.open', spec=file)
+    @mock.patch(BUILTIN + '.open', spec=file)
     def test_inifile_not_exist_return_default_values(self, mock_method):
 
         mock_method.side_effect = IOError()
@@ -66,7 +69,7 @@ class Test(unittest.TestCase):
         self.assertEqual(conf.optList, [])
         self.assertEqual(conf.optDict, {'one':1, 'two':2})
 
-    @mock.patch('__builtin__.open', spec=file)
+    @mock.patch(BUILTIN + '.open', spec=file)
     def test_load_inifile_and_set_props(self, mock_method):
 
         file_metadata = ['[section]',
