@@ -6,14 +6,11 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
-    from iniconfig import IniConfig
-    import unittest
-    import unittest.mock as mock
-except:
-    from iniconfig import IniConfig
-    import unittest
-    import mock
-
+    import mock                   # py2
+except ImportError:
+    import unittest.mock as mock  # py3
+from iniconfig import IniConfig
+import unittest
 
 class Conf(IniConfig):
 
