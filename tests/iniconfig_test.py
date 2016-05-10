@@ -103,7 +103,7 @@ class Test(unittest.TestCase):
                     mock.call('\n')]
         self.assertEqual(mock_file.write.call_count, 4)
         for expect in expected:
-            self.assertIn(expect, mock_file.write.call_args_list)
+            self.assertTrue(expect in mock_file.write.call_args_list)
         mock_file.write.reset_mock()
 
         # test 2
@@ -116,7 +116,7 @@ class Test(unittest.TestCase):
                     mock.call('\n')]
         self.assertEqual(mock_file.write.call_count, 5)
         for expect in expected:
-            self.assertIn(expect, mock_file.write.call_args_list)
+            self.assertTrue(expect in mock_file.write.call_args_list)
         mock_file.write.reset_mock()
 
         # test 3
@@ -129,7 +129,7 @@ class Test(unittest.TestCase):
                     mock.call('\n')]
         self.assertEqual(mock_file.write.call_count, 5)
         for expect in expected:
-            self.assertIn(expect, mock_file.write.call_args_list)
+            self.assertTrue(expect in mock_file.write.call_args_list)
 
 
 if __name__ == '__main__':
