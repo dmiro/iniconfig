@@ -9,6 +9,7 @@ try:
     import mock                   # py2
 except ImportError:
     import unittest.mock as mock  # py3
+    from io import TextIOBase as file
 from iniconfig import IniConfig
 import unittest
 
