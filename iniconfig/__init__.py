@@ -1,4 +1,4 @@
-from iniconfig import IniConfig
+from .iniconfig import IniConfig
 
 __author__ = 'dmiro'
 __version_info__ = (1, 0, 0)

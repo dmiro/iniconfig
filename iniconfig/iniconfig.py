@@ -8,10 +8,15 @@ A more convenient and practical approach to manage .ini files.
 You can link a class property with an .ini file option and
 delegating your management.
 
+MIT license
+
 See https://github.com/dmiro/iniconfig for more information
 """
 
-from ConfigParser import ConfigParser
+try:
+    from ConfigParser import ConfigParser #py2
+except ImportError:
+    from configparser import ConfigParser #py3
 from ast import literal_eval
 from collections import MutableMapping, MutableSequence
 
@@ -80,7 +85,7 @@ class IniConfig(object):
     @classmethod
     def iniproperty(cls, section, option, default):
 
-        def getter(owner):            
+        def getter(owner):
             if not owner.config.has_section(section):
                 owner.config.add_section(section)
             if owner.config.has_option(section, option):
@@ -93,7 +98,7 @@ class IniConfig(object):
                 value = SetterDict(settermethod, value)
             if isinstance(value, list):
                 settermethod = lambda value: setter(owner, value)
-                value = SetterList(settermethod, value)                
+                value = SetterList(settermethod, value)
             return value
 
         def setter(owner, value):

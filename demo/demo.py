@@ -9,7 +9,7 @@ from iniconfig import IniConfig
 
 
 class Config(IniConfig):
-    
+
     # file section
     file_useCsvWizard = IniConfig.iniproperty('file', 'useCsvWizard', True)
     file_owner = IniConfig.iniproperty('file', 'owner', {'name':'david'})
@@ -24,28 +24,23 @@ class Config(IniConfig):
     # config section
     config_restore = IniConfig.iniproperty('config', 'restore', True)
 
-# 
-# global
-#
 
-config = Config(filename='demo.ini')#, autocreate=True)
+config = Config(filename='demo.ini')
 
-print '\nafter'
-print 'file/useCsvWizard:', config.file_useCsvWizard
-print 'file/owner:', config.file_owner
-print 'file/files:', config.file_files
-print 'tools/searches:', config.tools_searches
+print('\nafter')
+print('file/useCsvWizard:', config.file_useCsvWizard)
+print('file/owner:', config.file_owner)
+print('file/files:', config.file_files)
+print('tools/searches:', config.tools_searches)
 
 config.file_useCsvWizard = False
 config.file_files = ['myfile.py']
 config.file_owner['surname'] = 'miro'
 
-print config.file_owner.__class__.__name__
+print(config.file_owner.__class__.__name__)
 
-print '\nbefore'
-print 'file/useCsvWizard:', config.file_useCsvWizard
-print 'file/owner:', config.file_owner
-print 'file/files:', config.file_files
-print 'tools/searches:', config.tools_searches
-
-#config.save()
+print('\nbefore')
+print('file/useCsvWizard:', config.file_useCsvWizard)
+print('file/owner:', config.file_owner)
+print('file/files:', config.file_files)
+print('tools/searches:', config.tools_searches)

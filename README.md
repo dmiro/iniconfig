@@ -1,6 +1,7 @@
+# iniconfig
+
 [![Build Status](https://travis-ci.org/dmiro/iniconfig.svg?branch=master)](https://travis-ci.org/dmiro/iniconfig)
 
-# iniconfig
 A more convenient and practical approach to manage .ini files. You can link a class property with an .ini file option and delegating your management.
 
 :package: Installation
