@@ -13,7 +13,7 @@ else:
     import mock
 
 if PY_VERSION >= (3,0):
-    from io import TextIOBase as file
+    from io import TextIOWrapper as file
     BUILTIN = 'builtins' # http://stackoverflow.com/q/9047745/2270217
 else:
     import mock
@@ -21,6 +21,7 @@ else:
 
 from iniconfig import IniConfig
 import unittest
+
 
 class Conf(IniConfig):
 
@@ -47,9 +48,11 @@ class Test(unittest.TestCase):
             if file_metadata:
                 return file_metadata.pop(0)
 
-        mock_method.return_value.__enter__ = lambda s: s       # with clausule
-        mock_method.return_value.__exit__ = mock.MagicMock()   # compatibility
-        mock_method.return_value.readline.side_effect = side_effect
+        mock_file = mock_method.return_value
+        mock_file.__enter__ = lambda s: s               # with clausule
+        mock_file.__exit__ = mock.MagicMock()           # compatibility
+        mock_file.__iter__.return_value = file_metadata # iterate compatibility
+        mock_file.readline.side_effect = side_effect    # readline() compatibility
 
         conf = Conf('conf.ini')
 
@@ -88,9 +91,10 @@ class Test(unittest.TestCase):
                 return file_metadata.pop(0)
 
         mock_file = mock_method.return_value
-        mock_file.__enter__ = lambda s: s       # with clausule
-        mock_file.__exit__ = mock.MagicMock()   # compatibility
-        mock_file.readline.side_effect = side_effect
+        mock_file.__enter__ = lambda s: s               # with clausule
+        mock_file.__exit__ = mock.MagicMock()           # compatibility
+        mock_file.__iter__.return_value = file_metadata # iterate compatibility
+        mock_file.readline.side_effect = side_effect    # readline() compatibility
         conf = Conf('conf.ini')
         self.assertTrue(mock_method.called)
 
@@ -104,9 +108,9 @@ class Test(unittest.TestCase):
         self.assertEqual(mock_file.write.call_count, 4)
         for expect in expected:
             self.assertTrue(expect in mock_file.write.call_args_list)
-        mock_file.write.reset_mock()
 
         # test 2
+        mock_file.write.reset_mock()
         conf.optList = ['twenty']
         self.assertEqual(conf.optList, ['twenty'])
         expected = [mock.call('[section]\n'),
@@ -117,9 +121,9 @@ class Test(unittest.TestCase):
         self.assertEqual(mock_file.write.call_count, 5)
         for expect in expected:
             self.assertTrue(expect in mock_file.write.call_args_list)
-        mock_file.write.reset_mock()
 
         # test 3
+        mock_file.write.reset_mock()
         del(conf.optDict['three'])
         self.assertEqual(conf.optDict,{'four': '4'})
         expected = [mock.call('[section]\n'),
