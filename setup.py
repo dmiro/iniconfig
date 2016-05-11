@@ -13,7 +13,7 @@ except:
   pass
 
 setup(
-    name = 'iniconfig',
+    name = 'iniconfig.py',
     version = __import__('iniconfig').__version__,
     author = 'David Miro',
     author_email = 'lite.3engine@gmail.com',
