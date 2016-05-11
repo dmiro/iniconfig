@@ -1,6 +1,10 @@
 # iniconfig
 
 [![Build Status](https://travis-ci.org/dmiro/iniconfig.svg?branch=master)](https://travis-ci.org/dmiro/iniconfig)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dmiro/iniconfig/master/LICENSE)
+[![PyPI](https://img.shields.io/pypi/dm/iniconfig.svg?maxAge=2592000)](https://pypi.python.org/pypi/iniconfig/)
+[![PyPI](https://img.shields.io/pypi/v/iniconfig.svg?maxAge=2592000)](https://pypi.python.org/pypi/iniconfig/)
+[![PyPI](https://img.shields.io/badge/Python-2.6%20|%202.7%20|%203.2%20|%203.3%20|%203.4%20|%203.5-green.svg)](https://pypi.python.org/pypi/iniconfig/)
 
 A more convenient and practical approach to manage .ini files. You can link a class property with an .ini file option and delegating your management.
 
@@ -9,7 +13,7 @@ A more convenient and practical approach to manage .ini files. You can link a cl
 
 Install it via `pip`
 
-soon....
+`$ [sudo] pip install iniconfig`
 
 Or download zip and then install it by running
 
