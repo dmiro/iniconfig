@@ -13,7 +13,7 @@ A more convenient and practical approach to manage .ini files. You can link a cl
 
 Install it via `pip`
 
-`$ [sudo] pip install iniconfig`
+`$ [sudo] pip install iniconfig.py`
 
 Or download zip and then install it by running
 
