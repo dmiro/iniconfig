@@ -90,7 +90,13 @@ class IniConfig(object):
                 owner.config.add_section(section)
             if owner.config.has_option(section, option):
                 literal = owner.config.get(section, option)
-                value = literal_eval(literal)              # http://stackoverflow.com/a/16269302/2270217
+                try:
+                    value = literal_eval(literal)              # http://stackoverflow.com/a/16269302/2270217
+                except:
+                    try:
+                        value = eval(literal)
+                    except:
+                        value = literal
             else:
                 value = default
             if isinstance(value, dict):

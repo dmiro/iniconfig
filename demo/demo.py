@@ -13,6 +13,7 @@ class Config(IniConfig):
     # file section
     file_useCsvWizard = IniConfig.iniproperty('file', 'useCsvWizard', True)
     file_owner = IniConfig.iniproperty('file', 'owner', {'name':'david'})
+    file_address = IniConfig.iniproperty('file', 'address', 'my house')
     file_files = IniConfig.iniproperty('file', 'files', [])
 
     # tools section
@@ -27,20 +28,23 @@ class Config(IniConfig):
 
 config = Config(filename='demo.ini')
 
-print('\nafter')
+print('\nbefore')
 print('file/useCsvWizard:', config.file_useCsvWizard)
 print('file/owner:', config.file_owner)
 print('file/files:', config.file_files)
+print('file/address:', config.file_address)
 print('tools/searches:', config.tools_searches)
 
 config.file_useCsvWizard = False
 config.file_files = ['myfile.py']
 config.file_owner['surname'] = 'miro'
+config.file_address = 'my office'
 
 print(config.file_owner.__class__.__name__)
 
-print('\nbefore')
+print('\nafter')
 print('file/useCsvWizard:', config.file_useCsvWizard)
 print('file/owner:', config.file_owner)
 print('file/files:', config.file_files)
+print('file/address:', config.file_address)
 print('tools/searches:', config.tools_searches)
